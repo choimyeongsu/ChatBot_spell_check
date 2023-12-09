@@ -1,0 +1,86 @@
+.Wrap{
+  /* font-weight: bold; */
+  font-family: AppleSDGothic;
+  font-weight:1000;
+}
+
+.main-Wrap{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.chat-container{
+  height:450px;
+  overflow-y:scroll;
+  border: 1px solid #ccc;
+  padding:50px;
+  border-right:none;
+  border-left:none;
+  border-top:none;
+  border-bottom:1px solid black;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.user-input-wrap{
+  margin-top:30px;
+  display: flex;
+  justify-content: center;
+}
+
+.user-input{
+   height:80px;
+   width:500px;
+   padding-top: 20px;
+   padding-left: 20px;
+   font-family: AppleSDGothic;
+   font-weight:1000;
+
+}
+
+.user-input-wrap button{
+  background-color: white;
+  font-weight:bold;
+  font-family: AppleSDGothic;
+  font-weight:1000;
+}
+
+.post-btn{
+  width:130px;
+  height:105px;
+  border-radius: 5px;
+
+  &:hover{
+    cursor: pointer;
+    background-color: rgb(242, 247, 255)
+  }
+}
+.chat-span{
+  padding:25px;
+  border-radius: 5px;
+  animation: fadeIn 0.5s ease-out;
+}
+.copy-span{
+  font-size:12px;
+  margin-left:20px;
+  position: relative;
+  margin-bottom: 10px;
+  width:50px;
+  &:hover{
+    cursor: pointer;
+    color:rgb(100, 70, 255);
+  }
+}
