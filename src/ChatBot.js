@@ -12,21 +12,6 @@ const ChatBot = () => {
         ]);
     }, []);
 
-    const get = async () => {
-        await axios.get('https://y241z1txmd.execute-api.ap-northeast-2.amazonaws.com/default/TestChoi ', {
-            headers: {
-                'Accept': 'application.json'
-            }
-        })
-            .then(response => {
-                setMessages([...messages, { type: 'bot', text: response.data.body }]);
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
     const handleUserInput = (e) => {
         setUserInput(e.target.value);
     };
@@ -45,13 +30,37 @@ const ChatBot = () => {
                     'Content-Type': 'application/json'
                 },
             });
-            console.log(postResponse.data);
-            let strarr = postResponse.data.body.split(':');
-            let strarr2 = strarr[1].split('"');
-            let result = strarr2[1];
+            console.log(postResponse);
+            //console.log(postResponse);
+            console.log(postResponse.data.body);
+            let result="";
+            //맞춤법 교정 메시지 
+            if(postResponse.data.body.includes('suggestions'))
+            {
+                let strarr1=postResponse.data.body.split(',');
+                //console.log(strarr1);
+                let strarr2=strarr1[1].split('[');
+                //console.log(strarr2);
+                let strarr3=strarr2[1].split('"');
+                //console.log(strarr3);
+                result=strarr3[1];
+            }
+            //맞춤법 교정이 필요없는 메시지
+            else{
+                //console.log("else");
+                let correct1=postResponse.data.body.split(':');
+                //console.log(correct1);
+                let correct2=correct1[1].split('"');
+                //console.log(correct2);
+                result=correct2[1];
+                // '\n' 자르기
+                result = result.slice(0,-2);
+            }
+
+            //console.log("result : "+result);
             setMessages(prevMessages => [...prevMessages, { type: 'bot', text: result }]);
         } catch (error) {
-            console.error('Error:', error);
+            console.log(error);
             // 에러 메시지 추가
             setMessages([...messages, { type: 'bot', text: '죄송합니다. 오류가 발생했습니다.' }]);
         }

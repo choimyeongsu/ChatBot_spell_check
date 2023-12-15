@@ -62,7 +62,7 @@
   width:130px;
   height:105px;
   border-radius: 5px;
-
+  font-size:18px;
   &:hover{
     cursor: pointer;
     background-color: rgb(242, 247, 255)
